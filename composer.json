@@ -1,0 +1,56 @@
+{
+  "name": "thebugsoftware/teamwork",
+  "description": "Laravel Teamwork Library (Desk, HelpDocs,Tickets)",
+  "keywords": [
+    "laravel",
+    "teamwork"
+  ],
+  "homepage": "https://github.com/thebugsoftware/teamwork",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Robert Cristian Chiribuc",
+      "email": "robert@thebug.ro",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "guzzlehttp/guzzle": "~6.0",
+    "illuminate/support": "5.7.*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "thebugsoftware/php-dump": "^1.0",
+    "orchestra/testbench": "3.7.*",
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TheBugSoftware\\Teamwork\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TheBugSoftware\\Teamwork\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "TheBugSoftware\\Teamwork\\TeamworkServiceProvider"
+      ],
+      "aliases": {
+        "Teamwork": "TheBugSoftware\\Teamwork\\TeamworkFacade"
+      }
+    }
+  }
+}
