@@ -2,6 +2,9 @@
 
 All notable changes to `teamwork` will be documented in this file
 
+## 1.1.0 - 2019-10-23
+- update required packages
+
 ## 1.0.2 - 2019-06-28
 - travis updates
 
