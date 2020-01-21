@@ -18,7 +18,7 @@ class TeamworkServiceProvider extends ServiceProvider
          */
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('teamwork.php'),
+                __DIR__ . '/../config/config.php' => config_path('teamwork.php'),
             ], 'config');
         }
     }
@@ -29,7 +29,7 @@ class TeamworkServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'teamwork');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'teamwork');
 
         $this->commands([
             InstallCommand::class,

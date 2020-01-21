@@ -4,6 +4,7 @@ namespace TheBugSoftware\Teamwork\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\UploadedFile;
@@ -14,42 +15,23 @@ use Illuminate\Support\Facades\Storage;
 
 class TeamworkTestCase extends TestCase
 {
-    /**
-     * @var \Illuminate\Foundation\Application
-     */
     protected $app;
-
-    /**
-     * @var \TheBugSoftware\Teamwork\Teamwork
-     */
-    protected $teamwork;
 
     /**
      * Define environment setup.
      *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return void
+     * @param Application $app
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         // Setup the Teamwork domain and API Key
         $app['config']->set('teamwork.desk.domain', 'somedomain');
-        $app['config']->set('teamwork.desk.key', '04983o4krjwlkhoirtht983uytkjhgkjfh');
+        $app['config']->set('teamwork.desk.key', '564asdas6ywudMIVvFCIegEGcvxLPq2800HfB49dHFiVyRe8FTKyP');
 
         $this->app      = $app;
-        $this->teamwork = new Teamwork();
     }
 
-    /**
-     * Build the request for file upload.
-     *
-     * @param string $fileName
-     * @param bool   $multiple
-     *
-     * @return Request
-     */
-    protected function getUploadFileRequest($fileName, $multiple = false)
+    protected function getUploadFileRequest($fileName, $multiple = false): Request
     {
         Storage::fake('avatars');
 
@@ -75,15 +57,7 @@ class TeamworkTestCase extends TestCase
         );
     }
 
-    /**
-     * Build the client mock.
-     *
-     * @param $status
-     * @param $body
-     *
-     * @return \GuzzleHttp\Client
-     */
-    protected function mockClient($status, $body)
+    protected function mockClient($status, $body): Client
     {
         $mock    = new MockHandler([new Response($status, [], $body)]);
         $handler = HandlerStack::create($mock);

@@ -4,19 +4,13 @@ namespace TheBugSoftware\Teamwork;
 
 use GuzzleHttp\Client;
 use TheBugSoftware\Teamwork\Services\Desk;
-use TheBugSoftware\Teamwork\Services\Tickets;
 use TheBugSoftware\Teamwork\Services\HelpDocs;
+use TheBugSoftware\Teamwork\Services\Tickets;
 
 class Teamwork
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $client;
+    private Client $client;
 
-    /**
-     * ApiClient constructor.
-     */
     public function __construct()
     {
         $this->client = new Client([
@@ -25,33 +19,23 @@ class Teamwork
         ]);
     }
 
-    /**
-     * Teamwork Desk.
-     *
-     * @return Desk
-     */
-    public function desk(): Desk
+    private function getClient(): Client
     {
-        return new Desk($this->client);
+        return $this->client;
     }
 
-    /**
-     * Teamwork HelpDocs.
-     *
-     * @return HelpDocs
-     */
-    public function helpDocs(): HelpDocs
+    public static function desk(): Desk
     {
-        return new HelpDocs($this->client);
+        return new Desk((new Teamwork)->getClient());
     }
 
-    /**
-     * Teamwork Tickets.
-     *
-     * @return Tickets
-     */
-    public function tickets(): Tickets
+    public static function helpDocs(): HelpDocs
     {
-        return new Tickets($this->client);
+        return new HelpDocs((new Teamwork)->getClient());
+    }
+
+    public static function tickets(): Tickets
+    {
+        return new Tickets((new Teamwork)->getClient());
     }
 }

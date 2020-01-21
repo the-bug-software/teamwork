@@ -3,26 +3,16 @@
 namespace TheBugSoftware\Teamwork\Services;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Stream;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Support\Facades\File;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\File;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkInboxException;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkUploadException;
 
 class Desk
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private $client;
+    private Client $client;
 
-    /**
-     * Desk constructor.
-     *
-     * @param \GuzzleHttp\Client $client
-     */
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -34,25 +24,21 @@ class Desk
      * @param string $name
      *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkInboxException
+     * @throws TeamworkHttpException
+     * @throws TeamworkInboxException
      */
-    public function inbox($name): array
+    public function inbox(string $name): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->get('inboxes.json');
-            /** @var Stream $body */
-            $body    = $response->getBody();
-            $inboxes = json_decode($body->getContents(), true);
+            $body     = $response->getBody();
+            $inboxes  = json_decode($body->getContents(), true);
 
-            $inbox = collect($inboxes['inboxes'])->first(
-                function ($inbox) use ($name) {
-                    return $inbox['name'] === $name;
-                }
-            );
+            $inbox = collect($inboxes['inboxes'])->first(function ($inbox) use ($name) {
+                return $inbox['name'] === $name;
+            });
 
-            if (! $inbox) {
+            if (!$inbox) {
                 throw new TeamworkInboxException("No inbox found with the name: $name!", 400);
             }
 
@@ -66,15 +52,13 @@ class Desk
      * Get teamwork desk inboxes.
      *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
+     * @throws TeamworkHttpException
      */
     public function inboxes(): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->get('inboxes.json');
-            /** @var Stream $body */
-            $body = $response->getBody();
+            $body     = $response->getBody();
 
             return json_decode($body->getContents(), true);
         } catch (ClientException $e) {
@@ -86,15 +70,13 @@ class Desk
      * Return the current client info.
      *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
+     * @throws TeamworkHttpException
      */
     public function me(): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->get('me.json');
-            /** @var Stream $body */
-            $body = $response->getBody();
+            $body     = $response->getBody();
 
             return json_decode($body->getContents(), true);
         } catch (ClientException $e) {
@@ -109,8 +91,8 @@ class Desk
      * @param $file
      *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkUploadException
+     * @throws TeamworkHttpException
+     * @throws TeamworkUploadException
      */
     public function upload($userId, $file): array
     {
@@ -125,23 +107,23 @@ class Desk
         $stream    = fopen($temp->getPathName(), 'r');
 
         try {
-            /** @var Response $response */
             $response = $this->client->post('upload/attachment', [
                 'multipart' => [
                     [
                         'name'     => 'file',
                         'contents' => $stream,
-                    ], [
-                        'name'     => 'userId',
-                        'contents' => $userId,
                     ],
-                ],
+                    [
+                        'name'     => 'userId',
+                        'contents' => $userId
+                    ]
+                ]
             ]);
-            /** @var Stream $body */
+
             $body = $response->getBody();
             $body = json_decode($body->getContents(), true);
 
-            if (! empty($stream)) {
+            if (!empty($stream)) {
                 File::delete($temp->getPathName());
             }
 
@@ -150,7 +132,7 @@ class Desk
                 'url'       => $body['attachment']['downloadURL'],
                 'extension' => $extension,
                 'name'      => $body['attachment']['filename'],
-                'size'      => $body['attachment']['size'],
+                'size'      => $body['attachment']['size']
             ];
         } catch (ClientException $e) {
             throw new TeamworkHttpException($e->getMessage(), 400);

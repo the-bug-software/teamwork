@@ -14,7 +14,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->helpdocs()->getSites();
+        Teamwork::helpdocs()->getSites();
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->helpdocs()->getSite(0);
+        Teamwork::helpdocs()->getSite(0);
     }
 
     /** @test */
@@ -52,7 +52,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->helpdocs()->getSiteCategories(0);
+        Teamwork::helpdocs()->getSiteCategories(0);
     }
 
     /** @test */
@@ -71,7 +71,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->helpdocs()->getSiteArticles(0);
+        Teamwork::helpdocs()->getSiteArticles(0);
     }
 
     /** @test */
@@ -90,7 +90,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->helpdocs()->getArticle(0);
+        Teamwork::helpdocs()->getArticle(0);
     }
 
     /** @test */
@@ -120,7 +120,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->helpdocs()->getCategoryArticles(0);
+        Teamwork::helpdocs()->getCategoryArticles(0);
     }
 
     /** @test */

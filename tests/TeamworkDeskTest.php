@@ -16,7 +16,7 @@ class TeamworkDeskTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->desk()->me();
+        Teamwork::desk()->me();
     }
 
     /** @test */
@@ -35,7 +35,7 @@ class TeamworkDeskTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->desk()->inboxes();
+        Teamwork::desk()->inboxes();
     }
 
     /** @test */
@@ -65,7 +65,7 @@ class TeamworkDeskTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        $this->teamwork->desk()->inbox('undefined');
+        Teamwork::desk()->inbox('undefined');
     }
 
     /** @test */
@@ -84,7 +84,7 @@ class TeamworkDeskTest extends TeamworkTestCase
     {
         $this->expectException(TeamworkUploadException::class);
 
-        (new Teamwork)->desk()->upload(24234, '');
+        Teamwork::desk()->upload(24234, '');
     }
 
     /** @test */
@@ -95,7 +95,7 @@ class TeamworkDeskTest extends TeamworkTestCase
         $this->expectException(TeamworkHttpException::class);
 
         $request = $this->getUploadFileRequest('file');
-        (new Teamwork)->desk()->upload(423423, $request->file);
+        Teamwork::desk()->upload(423423, $request->file);
     }
 
     /** @test */

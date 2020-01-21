@@ -3,24 +3,14 @@
 namespace TheBugSoftware\Teamwork\Services;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Stream;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\ClientException;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkParameterException;
 
 class Tickets
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private $client;
+    protected Client $client;
 
-    /**
-     * Tickets constructor.
-     *
-     * @param \GuzzleHttp\Client $client
-     */
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -30,15 +20,13 @@ class Tickets
      * Get tickets priorities.
      *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
+     * @throws TeamworkHttpException
      */
     public function priorities(): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->get('ticketpriorities.json');
-            /** @var Stream $body */
-            $body = $response->getBody();
+            $body     = $response->getBody();
 
             return json_decode($body->getContents(), true);
         } catch (ClientException $e) {
@@ -50,17 +38,14 @@ class Tickets
      * Get a list of tickets for a customer.
      *
      * @param int $customerId
-     *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
+     * @throws TeamworkHttpException
      */
-    public function customer($customerId): array
+    public function customer(int $customerId): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->get(sprintf('customers/%s/previoustickets.json', $customerId));
-            /** @var Stream $body */
-            $body = $response->getBody();
+            $body     = $response->getBody();
 
             return json_decode($body->getContents(), true);
         } catch (ClientException $e) {
@@ -72,19 +57,16 @@ class Tickets
      * Send a ticket to teamwork desk.
      *
      * @param array $data
-     *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
+     * @throws TeamworkHttpException
      */
-    public function post($data): array
+    public function post(array $data): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->post('tickets.json', [
                 'form_params' => $data,
             ]);
 
-            /** @var Stream $body */
             $body = $response->getBody();
 
             return json_decode($body->getContents(), true);
@@ -97,10 +79,9 @@ class Tickets
      * Post a reply to a ticket.
      *
      * @param array $data
-     *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkParameterException
+     * @throws TeamworkHttpException
+     * @throws TeamworkParameterException
      */
     public function reply(array $data): array
     {
@@ -109,12 +90,10 @@ class Tickets
         }
 
         try {
-            /** @var Response $response */
             $response = $this->client->post(sprintf('tickets/%s.json', $data['ticketId']), [
                 'form_params' => $data,
             ]);
 
-            /** @var Stream $body */
             $body = $response->getBody();
 
             return json_decode($body->getContents(), true);
@@ -127,17 +106,14 @@ class Tickets
      * Get ticket by id.
      *
      * @param int $ticketId
-     *
      * @return array
-     * @throws \TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException
+     * @throws TeamworkHttpException
      */
-    public function ticket($ticketId): array
+    public function ticket(int $ticketId): array
     {
         try {
-            /** @var Response $response */
             $response = $this->client->get(sprintf('tickets/%s.json', $ticketId));
-            /** @var Stream $body */
-            $body = $response->getBody();
+            $body     = $response->getBody();
 
             return json_decode($body->getContents(), true);
         } catch (ClientException $e) {

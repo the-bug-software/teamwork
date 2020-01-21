@@ -15,7 +15,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->tickets()->priorities();
+        Teamwork::tickets()->priorities();
     }
 
     /** @test */
@@ -34,7 +34,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->tickets()->customer(52);
+        Teamwork::tickets()->customer(52);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->tickets()->ticket(6545);
+        Teamwork::tickets()->ticket(6545);
     }
 
     /** @test */
@@ -72,7 +72,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->tickets()->post([]);
+        Teamwork::tickets()->post([]);
     }
 
     /** @test */
@@ -105,7 +105,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
     public function it_should_throw_an_parameter_exception_on_ticket_reply_request()
     {
         $this->expectException(TeamworkParameterException::class);
-        (new Teamwork)->tickets()->reply([]);
+        Teamwork::tickets()->reply([]);
     }
 
     /** @test */
@@ -114,7 +114,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
         $this->app['config']->set('teamwork.desk.domain', 'undefined');
 
         $this->expectException(TeamworkHttpException::class);
-        (new Teamwork)->tickets()->reply(['ticketId' => 1]);
+        Teamwork::tickets()->reply(['ticketId' => 1]);
     }
 
     /** @test */
