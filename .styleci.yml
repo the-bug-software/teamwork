@@ -3,8 +3,11 @@ preset: laravel
 enabled:
   - align_equals
   - align_double_arrow
+  - conctat_with_spaces
 
 disabled:
   - single_class_element_per_statement
   - self_accessor
   - unalign_equals
+  - not_operator_with_space
+  - not_operator_with_successor_space
