@@ -39,6 +39,7 @@ class HelpDocs
      * Get HelpDocs site.
      *
      * @param int $siteID
+     *
      * @return array
      * @throws TeamworkHttpException
      */
@@ -59,6 +60,7 @@ class HelpDocs
      *
      * @param int $categoryID
      * @param int $page
+     *
      * @return array
      * @throws TeamworkHttpException
      */
@@ -82,6 +84,7 @@ class HelpDocs
      *
      * @param int $siteID
      * @param int $page
+     *
      * @return array
      * @throws TeamworkHttpException
      */
@@ -103,6 +106,7 @@ class HelpDocs
      * Get article by id.
      *
      * @param int $articleID
+     *
      * @return array
      * @throws TeamworkHttpException
      */
@@ -122,6 +126,7 @@ class HelpDocs
      * Get articles (in bulk).
      *
      * @param array $articleIDs
+     *
      * @return array
      */
     public function getArticles(array $articleIDs): array
@@ -151,6 +156,7 @@ class HelpDocs
      * Get categories within a site.
      *
      * @param int $siteID
+     *
      * @return array
      * @throws TeamworkHttpException
      */

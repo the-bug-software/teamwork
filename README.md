@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/thebugsoftware/teamwork.svg?style=flat-square)](https://packagist.org/packages/thebugsoftware/teamwork)
 [![Build Status](https://img.shields.io/travis/thebugsoftware/teamwork/master.svg?style=flat-square)](https://travis-ci.org/thebugsoftware/teamwork)
-[![StyleCI](https://github.styleci.io/repos/179847016/shield?branch=master)](https://github.styleci.io/repos/179847016)
+[![StyleCI](https://github.styleci.io/repos/193023896/shield?branch=master)](https://github.styleci.io/repos/179847016)
 [![Quality Score](https://img.shields.io/scrutinizer/g/thebugsoftware/teamwork.svg?style=flat-square)](https://scrutinizer-ci.com/g/thebugsoftware/teamwork)
 [![Total Downloads](https://img.shields.io/packagist/dt/thebugsoftware/teamwork.svg?style=flat-square)](https://packagist.org/packages/thebugsoftware/teamwork)
 [![License](https://img.shields.io/packagist/l/thebugsoftware/teamwork.svg?style=flat-square)](https://github.com/thebugsoftware/teamwork/blob/master/LICENSE.md)

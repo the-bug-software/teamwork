@@ -115,9 +115,9 @@ class Desk
                     ],
                     [
                         'name'     => 'userId',
-                        'contents' => $userId
-                    ]
-                ]
+                        'contents' => $userId,
+                    ],
+                ],
             ]);
 
             $body = $response->getBody();
@@ -132,7 +132,7 @@ class Desk
                 'url'       => $body['attachment']['downloadURL'],
                 'extension' => $extension,
                 'name'      => $body['attachment']['filename'],
-                'size'      => $body['attachment']['size']
+                'size'      => $body['attachment']['size'],
             ];
         } catch (ClientException $e) {
             throw new TeamworkHttpException($e->getMessage(), 400);

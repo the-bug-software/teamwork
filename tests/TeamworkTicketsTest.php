@@ -2,10 +2,10 @@
 
 namespace TheBugSoftware\Teamwork\Tests;
 
-use TheBugSoftware\Teamwork\Teamwork;
-use TheBugSoftware\Teamwork\Services\Tickets;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkParameterException;
+use TheBugSoftware\Teamwork\Services\Tickets;
+use TheBugSoftware\Teamwork\Teamwork;
 
 class TeamworkTicketsTest extends TeamworkTestCase
 {
@@ -21,7 +21,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
     /** @test */
     public function it_should_return_all_priorities()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/Tickets/priorities-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/Tickets/priorities-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new Tickets($client);
 
@@ -40,7 +40,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
     /** @test */
     public function it_should_return_a_list_of_customer_tickets()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/Tickets/customer-tickets-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/Tickets/customer-tickets-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new Tickets($client);
 
@@ -59,7 +59,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
     /** @test */
     public function it_should_return_a_ticket()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/Tickets/ticket-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/Tickets/ticket-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new Tickets($client);
 
@@ -94,7 +94,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
             'message'             => 'Ths is an API test so please ignore this ticket.',
         ];
 
-        $body     = file_get_contents(__DIR__.'/Mock/Tickets/create-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/Tickets/create-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new Tickets($client);
 
@@ -120,7 +120,7 @@ class TeamworkTicketsTest extends TeamworkTestCase
     /** @test */
     public function it_should_post_a_reply_and_return_back_the_ticket()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/Tickets/ticket-reply-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/Tickets/ticket-reply-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new Tickets($client);
 

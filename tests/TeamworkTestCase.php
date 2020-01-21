@@ -3,15 +3,14 @@
 namespace TheBugSoftware\Teamwork\Tests;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\UploadedFile;
-use Orchestra\Testbench\TestCase;
-use GuzzleHttp\Handler\MockHandler;
-use TheBugSoftware\Teamwork\Teamwork;
 use Illuminate\Support\Facades\Storage;
+use Orchestra\Testbench\TestCase;
 
 class TeamworkTestCase extends TestCase
 {
@@ -28,7 +27,7 @@ class TeamworkTestCase extends TestCase
         $app['config']->set('teamwork.desk.domain', 'somedomain');
         $app['config']->set('teamwork.desk.key', '564asdas6ywudMIVvFCIegEGcvxLPq2800HfB49dHFiVyRe8FTKyP');
 
-        $this->app      = $app;
+        $this->app = $app;
     }
 
     protected function getUploadFileRequest($fileName, $multiple = false): Request

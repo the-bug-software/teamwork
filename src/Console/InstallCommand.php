@@ -2,9 +2,9 @@
 
 namespace TheBugSoftware\Teamwork\Console;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Console\DetectsApplicationNamespace;
+use Illuminate\Support\Str;
 
 class InstallCommand extends Command
 {
@@ -53,17 +53,17 @@ class InstallCommand extends Command
 
         $appConfig = file_get_contents(config_path('app.php'));
 
-        if (Str::contains($appConfig, $namespace.'\\TheBugSoftware\Teamwork\TeamworkServiceProvider::class')) {
+        if (Str::contains($appConfig, $namespace . '\\TheBugSoftware\Teamwork\TeamworkServiceProvider::class')) {
             return;
         }
 
         file_put_contents(config_path('app.php'), str_replace(
             '/*
          * Package Service Providers...
-         */'.PHP_EOL,
+         */' . PHP_EOL,
             '/*
          * Package Service Providers...
-         */'.PHP_EOL."        TheBugSoftware\Teamwork\TeamworkServiceProvider::class,".PHP_EOL,
+         */' . PHP_EOL . "        TheBugSoftware\Teamwork\TeamworkServiceProvider::class," . PHP_EOL,
             $appConfig
         ));
     }

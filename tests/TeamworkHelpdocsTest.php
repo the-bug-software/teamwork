@@ -2,9 +2,9 @@
 
 namespace TheBugSoftware\Teamwork\Tests;
 
-use TheBugSoftware\Teamwork\Teamwork;
-use TheBugSoftware\Teamwork\Services\HelpDocs;
 use TheBugSoftware\Teamwork\Exceptions\TeamworkHttpException;
+use TheBugSoftware\Teamwork\Services\HelpDocs;
+use TheBugSoftware\Teamwork\Teamwork;
 
 class TeamworkHelpdocsTest extends TeamworkTestCase
 {
@@ -20,7 +20,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_return_an_array_of_sites()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/sites-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/sites-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 
@@ -39,7 +39,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_get_a_site_by_id()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/site-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/site-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 
@@ -58,7 +58,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_get_site_categories()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/categories-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/categories-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 
@@ -77,7 +77,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_get_articles_within_a_site()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/articles-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/articles-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 
@@ -96,7 +96,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_get_a_single_article()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/article-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/article-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 
@@ -106,7 +106,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_get_all_articles()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/all-articles-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/all-articles-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 
@@ -126,7 +126,7 @@ class TeamworkHelpdocsTest extends TeamworkTestCase
     /** @test */
     public function it_should_get_all_articles_within_a_category()
     {
-        $body     = file_get_contents(__DIR__.'/Mock/HelpDocs/all-articles-within-category-response.json');
+        $body     = file_get_contents(__DIR__ . '/Mock/HelpDocs/all-articles-within-category-response.json');
         $client   = $this->mockClient(200, $body);
         $response = new HelpDocs($client);
 

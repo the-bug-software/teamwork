@@ -38,6 +38,7 @@ class Tickets
      * Get a list of tickets for a customer.
      *
      * @param int $customerId
+     *
      * @return array
      * @throws TeamworkHttpException
      */
@@ -57,6 +58,7 @@ class Tickets
      * Send a ticket to teamwork desk.
      *
      * @param array $data
+     *
      * @return array
      * @throws TeamworkHttpException
      */
@@ -79,6 +81,7 @@ class Tickets
      * Post a reply to a ticket.
      *
      * @param array $data
+     *
      * @return array
      * @throws TeamworkHttpException
      * @throws TeamworkParameterException
@@ -106,6 +109,7 @@ class Tickets
      * Get ticket by id.
      *
      * @param int $ticketId
+     *
      * @return array
      * @throws TeamworkHttpException
      */
