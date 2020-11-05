@@ -1,4 +1,4 @@
-# Teamwork PHP SDK - Laravel Framework
+![Teamwork](https://banners.beyondco.de/Teamwork.png?theme=dark&packageName=thebugsoftware%2Fteamwork&pattern=hexagons&style=style_1&description=A+PHP+Laravel+wrapper+library+for+Teamwork+API%27s.&md=1&fontSize=100px&images=code)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/thebugsoftware/teamwork.svg?style=flat-square)](https://packagist.org/packages/thebugsoftware/teamwork)
 [![Build Status](https://img.shields.io/travis/thebugsoftware/teamwork/master.svg?style=flat-square)](https://travis-ci.org/thebugsoftware/teamwork)
